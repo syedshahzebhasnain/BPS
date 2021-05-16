@@ -57,5 +57,11 @@ namespace BPSTakeHome.Infrastructure.Data.Repositories
             await _context.SaveChangesAsync();
             return emp;
         }
+
+        public async Task<IEnumerable<EmployeePosition>> GetAllPositions()
+        {
+            return _context.EmployeePosition.AsNoTracking();
+
+        }
     }
 }

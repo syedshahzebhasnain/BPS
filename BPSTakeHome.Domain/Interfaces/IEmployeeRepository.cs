@@ -17,5 +17,7 @@ namespace BPSTakeHome.Domain.Interfaces
 
         Task<Employee> CreateEmployee(Employee emp);
 
+        Task<IEnumerable<EmployeePosition>> GetAllPositions();
+
     }
 }

@@ -59,5 +59,13 @@ namespace BPSTakeHome.WebUI.Controllers
             var result = await _employeeService.DeleteEmployee(employeeId);
             return result;
         }
+
+        [HttpGet]
+        [Route("positions")]
+        public async Task<List<EmployeePositionViewModel>> GetEmployeePositions()
+        {
+            var model = await _employeeService.GetEmployeePositions();
+            return model;
+        }
     }
 }

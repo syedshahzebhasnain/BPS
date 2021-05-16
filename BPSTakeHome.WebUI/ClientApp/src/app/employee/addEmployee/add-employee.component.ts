@@ -4,8 +4,8 @@ import { EmployeeService } from 'src/app/services/Employee.service';
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html'
-  //styleUrls: ['./add-employee.component.css']
 })
+
 export class AddEmployeeComponent implements OnInit {
   employee = {
     id:'',
@@ -17,9 +17,20 @@ export class AddEmployeeComponent implements OnInit {
   };
   submitted = false;
 
+  positions = {};
+
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
+
+    this.employeeService.getPositions().subscribe(
+      response => {
+        console.log(response);
+        this.positions = response;
+      },
+      error => {
+        console.log(error);
+      });
   }
 
   saveEmployee(): void {

@@ -15,5 +15,7 @@ namespace BPSTakeHome.Application.Interfaces
         Task<EmployeeViewModel> UpdateEmployee(string employeeId, EmployeeViewModel employeeModel);
 
         Task<EmployeeViewModel> CreateEmployee(EmployeeViewModel employeeModel);
+
+        Task<List<EmployeePositionViewModel>> GetEmployeePositions();
     }
 }

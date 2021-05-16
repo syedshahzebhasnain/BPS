@@ -34,4 +34,9 @@ export class EmployeeService {
   delete(id) {
     return this.http.delete(`${this.baseUrl}${controllerName}/${id}`);
   }
+
+  getPositions() {
+    return this.http.get(this.baseUrl + controllerName + '/positions');
+
+  }
 }

@@ -79,5 +79,14 @@ namespace BPSTakeHome.Application.Services
 
             return result.ToViewModel();
         }
+
+        public async Task<List<EmployeePositionViewModel>> GetEmployeePositions()
+        {
+
+            var result = await _employeeRepository.GetAllPositions();
+
+            return result.Select(x => x.ToViewModel()).ToList();
+        }
+
     }
 }

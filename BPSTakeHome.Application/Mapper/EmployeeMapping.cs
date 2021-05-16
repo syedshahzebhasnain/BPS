@@ -43,5 +43,15 @@ namespace BPSTakeHome.Application.Mapper
 
             };
         }
+
+        public static EmployeePositionViewModel ToViewModel(this EmployeePosition model)
+        {
+            return new EmployeePositionViewModel()
+            {
+                Id = model.Id,
+                PositionName = model.PositionName
+
+            };
+        }
     }
 }
