@@ -13,9 +13,9 @@ namespace BPSTakeHome.Application.Mapper
             {
                 FullName = model.FullName,
                 Address = model.Address,
-                Id = model.Id,
+                Id = model.Id.ToString(),
                 PhoneNumber = model.PhoneNumber,
-                Position = model.Position
+                PositionId = model.PositionId
             };
         }
 
@@ -25,9 +25,9 @@ namespace BPSTakeHome.Application.Mapper
             {
                 FullName = model.FullName,
                 Address = model.Address,
-                Id = model.Id,
+                Id = new Guid(model.Id),
                 PhoneNumber = model.PhoneNumber,
-                Position = model.Position
+                PositionId = model.PositionId
             };
         }
         public static Employee ToCreateDomainModel(this EmployeeViewModel model)
@@ -36,9 +36,9 @@ namespace BPSTakeHome.Application.Mapper
             {
                 FullName = model.FullName,
                 Address = model.Address,
-                Id = model.Id,
+                Id = Guid.NewGuid(),
                 PhoneNumber = model.PhoneNumber,
-                Position = model.Position,
+                PositionId = model.PositionId,
                 CreatedOn = DateTime.Now,
 
             };

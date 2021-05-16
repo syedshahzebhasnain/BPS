@@ -1,42 +1,35 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const baseUrl = 'http://localhost:8080/api/tutorials';
+
 var controllerName = "employee";
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
+  baseUrl: any;
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) { }
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    this.baseUrl = baseUrl
+  }
 
   getAll() {
-   this.http.get(baseUrl + controllerName).subscribe(result => {
-     return result
-    }, error => console.error(error));;
+    return this.http.get(this.baseUrl + controllerName);
   }
 
   get(id) {
-    this.http.get(`${baseUrl}/${controllerName}/${id}`).subscribe(result => {
-      return result;
-    }, error => console.error(error));;
+    return this.http.get(`${this.baseUrl}/${controllerName}/${id}`);
   }
 
   create(data) {
-    this.http.post(baseUrl + controllerName, data).subscribe(result => {
-      return result;
-    }, error => console.error(error));;
+    return this.http.post(this.baseUrl + controllerName , data);
   }
 
   update(id, data) {
-    this.http.put(`${baseUrl}/${controllerName}/${id}`, data).subscribe(result => {
-      return result;
-    }, error => console.error(error));;
+    return this.http.put(`${this.baseUrl}/${controllerName}/${id}`, data);
   }
 
   delete(id) {
-    this.http.delete(`${baseUrl}/${controllerName}/${id}`).subscribe(result => {
-      return result;
-    }, error => console.error(error));;
+    return this.http.delete(`${this.baseUrl}/${controllerName}/${id}`);
   }
 }

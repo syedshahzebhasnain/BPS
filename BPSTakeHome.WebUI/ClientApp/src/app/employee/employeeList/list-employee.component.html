@@ -1,0 +1,49 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Employee List</h4>
+    <ul class="list-group">
+      <li class="list-group-item"
+          *ngFor="let employee of employees; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveEmployee(employee, i)">
+        {{ employee.fullName }}
+        {{ employee.position }}
+      </li>
+    </ul>
+
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentEmployee">
+      <h4>Personal Information</h4>
+      <div>
+        <label><strong>FullName:</strong></label>
+        {{ currentEmployee.fullName }}
+      </div>
+      <div>
+        <label><strong>Address:</strong></label>
+        {{ currentEmployee.address }}
+      </div>
+      <div>
+        <label><strong>PhoneNumber:</strong></label>
+        {{ currentEmployee.phoneNumber }}
+      </div>
+      <div>
+        <label><strong>Position:</strong></label>
+        {{ currentEmployee.position }}
+      </div>
+
+      <a class="badge badge-warning" href="/employee-list/{{ currentEmployee.id }}">
+        Edit
+      </a>
+    </div>
+
+    <div *ngIf="!currentEmployee">
+      <br />
+      <p>Please click on a Employee...</p>
+    </div>
+  </div>
+</div>
