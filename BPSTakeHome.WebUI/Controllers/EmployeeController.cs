@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace BPSTakeHome.WebUI.Controllers
 {
+    [Produces("application/json")]
     [ApiController]
     [Route("[controller]")]
     public class EmployeeController : ControllerBase
     {
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<EmployeeController> _logger;
         private IEmployeeService _employeeService;
 
-        public EmployeeController(ILogger<WeatherForecastController> logger, IEmployeeService employeeService)
+        public EmployeeController(ILogger<EmployeeController> logger, IEmployeeService employeeService)
         {
             _logger = logger;
             _employeeService = employeeService;
@@ -29,7 +30,7 @@ namespace BPSTakeHome.WebUI.Controllers
         }
 
         [HttpGet]
-        [Route("/{employeeId}")]
+        [Route("{employeeId}")]
         public async Task<EmployeeViewModel> GetEmployee([FromRoute(Name = "employeeId")] string employeeId)
         {
             EmployeeViewModel model = await _employeeService.GetEmployee(employeeId);
@@ -44,7 +45,7 @@ namespace BPSTakeHome.WebUI.Controllers
         }
 
         [HttpPut]
-        [Route("/{employeeId}")]
+        [Route("{employeeId}")]
         public async Task<EmployeeViewModel> UpdateEmployee([FromRoute(Name = "employeeId")] string employeeId, [FromBody] EmployeeViewModel employee)
         {
             EmployeeViewModel model = await _employeeService.UpdateEmployee(employeeId, employee);
@@ -52,7 +53,7 @@ namespace BPSTakeHome.WebUI.Controllers
         }
 
         [HttpDelete]
-        [Route("/{employeeId}")]
+        [Route("{employeeId}")]
         public async Task<EmployeeViewModel> DeleteEmployee([FromRoute(Name = "employeeId")] string employeeId)
         {
             EmployeeViewModel model = await _employeeService.DeleteEmployee(employeeId);
