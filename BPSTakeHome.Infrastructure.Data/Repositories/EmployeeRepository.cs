@@ -20,18 +20,17 @@ namespace BPSTakeHome.Infrastructure.Data.Repositories
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
             await Task.Delay(0);
-            return _context.Employees;
+            return _context.Employees.AsNoTracking();
         }
 
         public async Task<Employee> GetEmployee(Guid empId)
         {
             await Task.Delay(0);
-            return await _context.Employees.FirstOrDefaultAsync(x => x.Id == empId);
+            return await _context.Employees.AsNoTracking().FirstOrDefaultAsync(x => x.Id == empId);
         }
 
         public async Task<Employee> UpdateEmployee(Employee emp)
         {
-            _context.Update();
             _context.Employees.Update(emp);
             await _context.SaveChangesAsync();
             return emp;
