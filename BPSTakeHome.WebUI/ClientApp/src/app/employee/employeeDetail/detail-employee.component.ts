@@ -3,12 +3,11 @@ import { EmployeeService } from 'src/app/services/Employee.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-tutorial-details',
-  templateUrl: './tutorial-details.component.html',
-  styleUrls: ['./tutorial-details.component.css']
+  selector: 'app-employee-details',
+  templateUrl: './detail-employee.component.html'
 })
-export class TutorialDetailsComponent implements OnInit {
-  currentTutorial = null;
+export class EmployeeDetailsComponent implements OnInit {
+  currentEmployee = null;
   message = '';
 
   constructor(
@@ -18,14 +17,14 @@ export class TutorialDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.message = '';
-    this.getTutorial(this.route.snapshot.paramMap.get('id'));
+    this.getEmployee(this.route.snapshot.paramMap.get('id'));
   }
 
-  getTutorial(id) {
+  getEmployee(id) {
     this.employeeService.get(id)
       .subscribe(
         data => {
-          this.currentTutorial = data;
+          this.currentEmployee = data;
           console.log(data);
         },
         error => {
@@ -35,15 +34,17 @@ export class TutorialDetailsComponent implements OnInit {
 
   updatePublished(status) {
     const data = {
-      title: this.currentTutorial.title,
-      description: this.currentTutorial.description,
+      fullName: this.currentEmployee.fullName,
+      address: this.currentEmployee.address,
+      phoneNumber: this.currentEmployee.phoneNumber,
+      position: this.currentEmployee.position,
       published: status
     };
 
-    this.employeeService.update(this.currentTutorial.id, data)
+    this.employeeService.update(this.currentEmployee.id, data)
       .subscribe(
         response => {
-          this.currentTutorial.published = status;
+          this.currentEmployee.published = status;
           console.log(response);
         },
         error => {
@@ -51,24 +52,24 @@ export class TutorialDetailsComponent implements OnInit {
         });
   }
 
-  updateTutorial() {
-    this.employeeService.update(this.currentTutorial.id, this.currentTutorial)
+  updateEmployee() {
+    this.employeeService.update(this.currentEmployee.id, this.currentEmployee)
       .subscribe(
         response => {
           console.log(response);
-          this.message = 'The tutorial was updated successfully!';
+          this.message = 'The employees details was updated successfully!';
         },
         error => {
           console.log(error);
         });
   }
 
-  deleteTutorial() {
-    this.employeeService.delete(this.currentTutorial.id)
+  deleteEmployee() {
+    this.employeeService.delete(this.currentEmployee.id)
       .subscribe(
         response => {
           console.log(response);
-          this.router.navigate(['/tutorials']);
+          this.router.navigate(['/employee-list']);
         },
         error => {
           console.log(error);

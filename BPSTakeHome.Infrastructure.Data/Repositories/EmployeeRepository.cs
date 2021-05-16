@@ -31,16 +31,25 @@ namespace BPSTakeHome.Infrastructure.Data.Repositories
 
         public async Task<Employee> UpdateEmployee(Employee emp)
         {
+            _context.Update();
             _context.Employees.Update(emp);
             await _context.SaveChangesAsync();
             return emp;
         }
 
-        public async Task<Employee> DeleteEmployee(Employee emp)
+        public async Task<bool> DeleteEmployee(Employee emp)
         {
-            _context.Employees.Remove(emp);
-            await _context.SaveChangesAsync();
-            return default;
+            try
+            {
+                _context.Employees.Remove(emp);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
         }
 
         public async Task<Employee> CreateEmployee(Employee emp)

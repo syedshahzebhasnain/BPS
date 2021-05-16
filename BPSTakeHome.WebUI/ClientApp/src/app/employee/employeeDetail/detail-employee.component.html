@@ -1,63 +1,52 @@
-<div *ngIf="currentTutorial" class="edit-form">
-  <h4>Tutorial</h4>
+<div *ngIf="currentEmployee" class="edit-form">
+  <h4>Employee</h4>
   <form>
     <div class="form-group">
-      <label for="title">Title</label>
+      <label for="fullName">Full Name</label>
       <input type="text"
              class="form-control"
-             id="title"
-             [(ngModel)]="currentTutorial.title"
+             id="fullName"
+             [(ngModel)]="currentEmployee.fullName"
              name="title" />
     </div>
     <div class="form-group">
-      <label for="description">Description</label>
+      <label for="address">Address</label>
       <input type="text"
              class="form-control"
-             id="description"
-             [(ngModel)]="currentTutorial.description"
+             id="address"
+             [(ngModel)]="currentEmployee.address"
              name="description" />
     </div>
     <div class="form-group">
-      <label for="description">Description</label>
+      <label for="phoneNumber">Phone Number</label>
       <input type="text"
              class="form-control"
-             id="description"
-             [(ngModel)]="currentTutorial.description"
+             id="phoneNumber"
+             [(ngModel)]="currentEmployee.phoneNumber"
              name="description" />
     </div>
     <div class="form-group">
-      <label for="description">Description</label>
+      <label for="position">Position</label>
       <input type="text"
              class="form-control"
-             id="description"
-             [(ngModel)]="currentTutorial.description"
+             id="position"
+             [(ngModel)]="currentEmployee.position"
              name="description" />
     </div>
 
   </form>
 
-  <button class="badge badge-primary mr-2"
-          *ngIf="currentTutorial.published"
-          (click)="updatePublished(false)">
-    UnPublish
-  </button>
-  <button *ngIf="!currentTutorial.published"
-          class="badge badge-primary mr-2"
-          (click)="updatePublished(true)">
-    Publish
-  </button>
-
-  <button class="badge badge-danger mr-2" (click)="deleteTutorial()">
+  <button class="badge badge-danger mr-2" (click)="deleteEmployee()">
     Delete
   </button>
 
-  <button type="submit" class="badge badge-success" (click)="updateTutorial()">
+  <button type="submit" class="badge badge-success" (click)="updateEmployee()">
     Update
   </button>
   <p>{{ message }}</p>
 </div>
 
-<div *ngIf="!currentTutorial">
+<div *ngIf="!currentEmployee">
   <br />
-  <p>Cannot access this Tutorial...</p>
+  <p>Cannot access this Employee...</p>
 </div>

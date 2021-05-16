@@ -39,7 +39,7 @@ namespace BPSTakeHome.Application.Services
             return employee.ToViewModel();
         }
 
-        public async Task<EmployeeViewModel> DeleteEmployee(string employeeId)
+        public async Task<Boolean> DeleteEmployee(string employeeId)
         {
 
             var empId = new Guid(employeeId);
@@ -51,7 +51,8 @@ namespace BPSTakeHome.Application.Services
                 throw new Exception("Employee Not Found");
             }
 
-            return employee.ToViewModel();
+            var result = await _employeeRepository.DeleteEmployee(employee);
+            return result;
         }
         public async Task<EmployeeViewModel> UpdateEmployee(string employeeId, EmployeeViewModel employeeModel)
         {

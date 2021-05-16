@@ -54,10 +54,10 @@ namespace BPSTakeHome.WebUI.Controllers
 
         [HttpDelete]
         [Route("{employeeId}")]
-        public async Task<EmployeeViewModel> DeleteEmployee([FromRoute(Name = "employeeId")] string employeeId)
+        public async Task<bool> DeleteEmployee([FromRoute(Name = "employeeId")] string employeeId)
         {
-            EmployeeViewModel model = await _employeeService.DeleteEmployee(employeeId);
-            return model;
+            var result = await _employeeService.DeleteEmployee(employeeId);
+            return result;
         }
     }
 }

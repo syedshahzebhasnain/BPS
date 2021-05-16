@@ -18,7 +18,9 @@ export class EmployeeService {
   }
 
   get(id) {
-    return this.http.get(`${this.baseUrl}/${controllerName}/${id}`);
+
+    console.log(this.baseUrl)
+    return this.http.get(`${this.baseUrl}${controllerName}/${id}`);
   }
 
   create(data) {
@@ -26,10 +28,10 @@ export class EmployeeService {
   }
 
   update(id, data) {
-    return this.http.put(`${this.baseUrl}/${controllerName}/${id}`, data);
+    return this.http.put(`${this.baseUrl}${controllerName}/${id}`, data);
   }
 
   delete(id) {
-    return this.http.delete(`${this.baseUrl}/${controllerName}/${id}`);
+    return this.http.delete(`${this.baseUrl}${controllerName}/${id}`);
   }
 }

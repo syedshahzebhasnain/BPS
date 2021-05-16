@@ -11,7 +11,7 @@ namespace BPSTakeHome.Domain.Interfaces
 
         Task<Employee> GetEmployee(Guid empId);
 
-        Task<Employee> DeleteEmployee(Employee emp);
+        Task<bool> DeleteEmployee(Employee emp);
 
         Task<Employee> UpdateEmployee(Employee emp);
 

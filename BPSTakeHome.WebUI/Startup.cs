@@ -26,7 +26,6 @@ namespace BPSTakeHome.WebUI
         {
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-
         }
 
 

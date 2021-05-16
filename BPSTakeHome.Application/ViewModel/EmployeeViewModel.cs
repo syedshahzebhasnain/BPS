@@ -1,6 +1,4 @@
-﻿using BPSTakeHome.Domain.Models;
-using Newtonsoft.Json;
-using System;
+﻿using Newtonsoft.Json;
 
 namespace BPSTakeHome.Application.ViewModel
 {

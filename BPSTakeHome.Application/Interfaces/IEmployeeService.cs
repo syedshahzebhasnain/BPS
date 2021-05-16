@@ -10,7 +10,7 @@ namespace BPSTakeHome.Application.Interfaces
 
         Task<EmployeeViewModel> GetEmployee(string employeeId);
 
-        Task<EmployeeViewModel> DeleteEmployee(string employeeId);
+        Task<bool> DeleteEmployee(string employeeId);
 
         Task<EmployeeViewModel> UpdateEmployee(string employeeId, EmployeeViewModel employeeModel);
 
