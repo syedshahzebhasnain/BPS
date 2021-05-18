@@ -8,11 +8,11 @@ import { EmployeeService } from 'src/app/services/Employee.service';
 
 export class AddEmployeeComponent implements OnInit {
   employee = {
-    id:'',
+    id: '',
     fullName: '',
     address: '',
     phoneNumber: '',
-    positionId : 0,
+    positionId: 0,
     published: false
   };
   submitted = false;
@@ -48,23 +48,23 @@ export class AddEmployeeComponent implements OnInit {
     };
 
     this.employeeService.create(data).subscribe(
-        response => {
-          console.log(response);
-          this.submitted = true;
-        },
-        error => {
-          console.log(error);
-        });
+      response => {
+        console.log(response);
+        this.submitted = true;
+      },
+      error => {
+        console.log(error);
+      });
   }
 
   newEmployee(): void {
     this.submitted = false;
     this.employee = {
-      id:'',
+      id: '',
       fullName: '',
       address: '',
       phoneNumber: '',
-      positionId:0,
+      positionId: 0,
       published: false
     };
   }

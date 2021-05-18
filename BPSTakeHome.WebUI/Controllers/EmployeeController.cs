@@ -28,7 +28,7 @@ namespace BPSTakeHome.WebUI.Controllers
             var model = await _employeeService.GetEmployees();
             return model;
         }
-
+ 
         [HttpGet]
         [Route("{employeeId}")]
         public async Task<EmployeeViewModel> GetEmployee([FromRoute(Name = "employeeId")] string employeeId)

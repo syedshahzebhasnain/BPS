@@ -3,38 +3,25 @@
     <div *ngIf="!submitted">
       <div class="form-group">
         <label for="title">Full Name</label>
-        <input type="text"
-               class="form-control"
-               id="fullName"
-               required
-               [(ngModel)]="employee.fullName"
-               name="title" />
+        <input type="text" class="form-control" id="fullName" required [(ngModel)]="employee.fullName" name="title" />
       </div>
 
       <div class="form-group">
         <label for="description">Address</label>
-        <input class="form-control"
-               id="address"
-               required
-               [(ngModel)]="employee.address"
-               name="description" />
+        <input class="form-control" id="address" required [(ngModel)]="employee.address" name="description" />
       </div>
 
       <div class="form-group">
         <label for="description">Phone Number</label>
-        <input class="form-control"
-               id="phoneNumber"
-               required
-               [(ngModel)]="employee.phoneNumber"
-               name="description" />
+        <input class="form-control" id="phoneNumber" required [(ngModel)]="employee.phoneNumber" name="description" />
       </div>
 
       <div class="form-group">
         <label for="description">Position</label>
         <select [(ngModel)]="employee.positionId">
           <option value="">Select Position</option>
-            <option *ngFor ="let position of empPositions" [value]="position.id">{{position.positionName}} </option>
-          </select>
+          <option *ngFor="let position of empPositions" [value]="position.id">{{position.positionName}} </option>
+        </select>
       </div>
 
       <button (click)="saveEmployee()" class="btn btn-success">Submit</button>

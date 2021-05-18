@@ -4,6 +4,7 @@ import { EmployeeService } from 'src/app/services/Employee.service';
 @Component({
   selector: 'app-employee-list',
   templateUrl: './list-employee.component.html',
+  styleUrls: ['./list-employee.component.css']
 })
 export class EmployeeListComponent implements OnInit {
 
@@ -61,18 +62,18 @@ export class EmployeeListComponent implements OnInit {
 
     if (employeeIndex === 0)
       return;
-    var result =  this.empPositions.find( e => e.id == employeeIndex );
+    var result = this.empPositions.find(e => e.id == employeeIndex);
     return result.positionName;
   }
 
   delete(employee, i) {
     this.employeeService.delete(employee.id)
-    .subscribe(
-      data => {
-        this.employees = this.employees.filter(emp => emp.id != employee.id);
-      },
-      error => {
-        console.log(error);
-      });
+      .subscribe(
+        data => {
+          this.employees = this.employees.filter(emp => emp.id != employee.id);
+        },
+        error => {
+          console.log(error);
+        });
   }
 }

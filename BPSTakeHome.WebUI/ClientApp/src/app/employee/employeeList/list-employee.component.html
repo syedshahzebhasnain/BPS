@@ -3,39 +3,73 @@
     <div class="input-group mb-3">
     </div>
   </div>
-  <div class="col-md-6">
-    <h4>Employee List</h4>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h4>Employee</h4>
+      </div>
+      <div class="col-6 text-right">
+        <button (click)="delete(employee, i)" class="button button5">+ Add new</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
     <ul class="list-group">
-      <li class="list-group-item"
-          *ngFor="let employee of employees; let i = index"
-          [class.active]="i == currentIndex"
-          (click)="setActiveEmployee(employee, i)">
-         {{ employee.fullName }}
-         {{ getEmployeePosition(employee.positionId)}}
-         <button (click)="delete(employee, i)">Click me!</button>
+      <li class="list-group-item" *ngFor="let employee of employees; let i = index" [class.active]="i == currentIndex"
+        (click)="setActiveEmployee(employee, i)">
+
+        <div class="row">
+          <div class="col-6">
+            <div>
+              <strong>{{ employee.fullName }}</strong>
+            </div>
+            <div>
+              {{ getEmployeePosition(employee.positionId)}}
+            </div>
+          </div>
+          <div class="col-6 text-right align-middle">
+            <button (click)="delete(employee, i)" class="button">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/archive/3/3f/20170115135605!OOjs_UI_icon_trash.svg/120px-OOjs_UI_icon_trash.svg.png"
+                width="20" height="20" />
+            </button>
+          </div>
+        </div>
       </li>
     </ul>
 
   </div>
   <div class="col-md-6">
     <div *ngIf="currentEmployee">
-      <h4>Personal Information</h4>
-      <div>
-        <label><strong>FullName:</strong></label>
-        {{ currentEmployee.fullName }}
-      </div>
-      <div>
-        <label><strong>Address:</strong></label>
-        {{ currentEmployee.address }}
-      </div>
-      <div>
-        <label><strong>PhoneNumber:</strong></label>
-        {{ currentEmployee.phoneNumber }}
-      </div>
-      <div>
-        <label><strong>Position:</strong></label>
-        {{ getEmployeePosition(currentEmployee.positionId) }}
-      </div>
+      <form>
+        <div class="form-group row">
+          <label for="inputEmail" class="col-sm-2 col-form-label"><strong>Full Name</strong></label>
+          <div class="col-sm-10 col-form-label">
+            {{ currentEmployee.fullName }}
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"><strong>Address</strong></label>
+          <div class="col-sm-10 col-form-label">
+            {{ currentEmployee.address }}
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"><strong>Phone Number</strong></label>
+          <div class="col-sm-10 col-form-label">
+            {{ currentEmployee.phoneNumber }}
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label"><strong>Position</strong></label>
+          <div class="col-sm-10 col-form-label">
+            {{ getEmployeePosition(currentEmployee.positionId) }}
+          </div>
+        </div>
+      </form>
 
       <a class="badge badge-warning" href="/employee-list/{{ currentEmployee.id }}">
         Edit
