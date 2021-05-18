@@ -15,20 +15,20 @@
   </div>
   <div class="col-md-4">
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let employee of employees; let i = index" [class.active]="i == currentIndex"
-        (click)="setActiveEmployee(employee, i)">
+      <li class="list-group-item" *ngFor="let employeeActive of employees; let i = index" [class.active]="i == currentIndex"
+        (click)="setActiveEmployee(employeeActive, i)">
 
         <div class="row">
           <div class="col-6">
             <div>
-              <strong>{{ employee.fullName }}</strong>
+              <strong>{{ employeeActive.fullName }}</strong>
             </div>
             <div>
-              {{ getEmployeePosition(employee.positionId)}}
+              {{ getEmployeePosition(employeeActive.positionId)}}
             </div>
           </div>
           <div class="col-6 text-right align-middle">
-            <button (click)="delete(employee, i)" class="button">
+            <button (click)="delete(employeeActive, i)" class="button">
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/archive/3/3f/20170115135605!OOjs_UI_icon_trash.svg/120px-OOjs_UI_icon_trash.svg.png"
                 width="20" height="20" />
@@ -71,12 +71,10 @@
         </div>
       </form>
 
-      <a class="badge badge-warning" href="/employee-list/{{ currentEmployee.id }}">
-        Edit
-      </a>
+      <button (click)="editEmployee(currentEmployee, i)" class="btn btn-success">Edit</button>
     </div>
 
-    <div *ngIf="!currentEmployee">
+    <div *ngIf="!currentEmployee && currentAction =='Add'">
 
         <div class="form-group row">
           <label for="inputEmail" class="col-sm-2 col-form-label"><strong>Full Name</strong></label>
@@ -111,5 +109,43 @@
 
       <button (click)="saveEmployee()" class="btn btn-success">Submit</button>
     </div>
+
+    <div *ngIf="!currentEmployee && currentAction =='Update'">
+
+      <div class="form-group row">
+        <label for="inputEmail" class="col-sm-2 col-form-label"><strong>Full Name</strong></label>
+        <div class="col-sm-10 col-form-label">
+          <input type="text" class="form-control" id="fullName" required [(ngModel)]="employee.fullName" name="title" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"><strong>Address</strong></label>
+        <div class="col-sm-10 col-form-label">
+          <input class="form-control" id="address" required [(ngModel)]="employee.address" name="description" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"><strong>Phone Number</strong></label>
+        <div class="col-sm-10 col-form-label">
+          <input class="form-control" id="phoneNumber" required [(ngModel)]="employee.phoneNumber" name="description" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"><strong>Position</strong></label>
+        <div class="col-sm-10 col-form-label">
+          <select [(ngModel)]="employee.positionId">
+            <option value="">Select Position</option>
+            <option *ngFor="let position of empPositions" [value]="position.id">{{position.positionName}} </option>
+          </select>
+        </div>
+      </div>
+
+    <button (click)="updateEmployee()" class="btn btn-success">Update</button>
+  </div>
+
+
   </div>
 </div>

@@ -10,6 +10,7 @@ export class EmployeeListComponent implements OnInit {
 
   employees: any;
   currentEmployee = null;
+  currentAction = "Add";
   currentIndex = -1;
   title = '';
   empPositions: any;
@@ -88,6 +89,15 @@ export class EmployeeListComponent implements OnInit {
 
   addEmployee() {
     this.currentEmployee =null;
+    this.currentAction = 'Add';
+    this.employee = {
+      id: '',
+      fullName: '',
+      address: '',
+      phoneNumber: '',
+      positionId: 0,
+      published: false
+    }
   }
 
   saveEmployee(): void {
@@ -119,14 +129,24 @@ export class EmployeeListComponent implements OnInit {
       });
   }
 
-  newEmployee(): void {
-    this.employee = {
-      id: '',
-      fullName: '',
-      address: '',
-      phoneNumber: '',
-      positionId: 0,
-      published: false
-    };
+  editEmployee(employee, index) {
+
+    this.currentAction = 'Update';
+
+    this.employee = employee;
+    this.currentEmployee = null;
+
+  }
+
+  updateEmployee() {
+    this.employeeService.update(this.employee.id, this.employee)
+      .subscribe(
+        response => {
+          console.log(response);
+
+        },
+        error => {
+          console.log(error);
+        });
   }
 }
