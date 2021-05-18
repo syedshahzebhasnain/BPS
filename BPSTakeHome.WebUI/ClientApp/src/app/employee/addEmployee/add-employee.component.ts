@@ -17,22 +17,27 @@ export class AddEmployeeComponent implements OnInit {
   };
   submitted = false;
 
-  positions = {};
+  public empPositions: any;
 
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
-
-    this.employeeService.getPositions().subscribe(
-      response => {
-        console.log(response);
-        this.positions = response;
-      },
-      error => {
-        console.log(error);
-      });
+    this.retrieveEmpPositions();
   }
 
+  retrieveEmpPositions() {
+
+    this.employeeService.getPositions()
+      .subscribe(
+        data => {
+          this.empPositions = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+
+  }
   saveEmployee(): void {
     const data = {
       id: "ABC",

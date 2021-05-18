@@ -10,8 +10,9 @@
           *ngFor="let employee of employees; let i = index"
           [class.active]="i == currentIndex"
           (click)="setActiveEmployee(employee, i)">
-        {{ employee.fullName }}
-        {{ employee.position }}
+         {{ employee.fullName }}
+         {{ getEmployeePosition(employee.positionId)}}
+         <button (click)="delete(employee, i)">Click me!</button>
       </li>
     </ul>
 
@@ -33,7 +34,7 @@
       </div>
       <div>
         <label><strong>Position:</strong></label>
-        {{ currentEmployee.position }}
+        {{ getEmployeePosition(currentEmployee.positionId) }}
       </div>
 
       <a class="badge badge-warning" href="/employee-list/{{ currentEmployee.id }}">

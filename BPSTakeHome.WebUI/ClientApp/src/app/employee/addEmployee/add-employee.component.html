@@ -31,11 +31,10 @@
 
       <div class="form-group">
         <label for="description">Position</label>
-        <input class="form-control"
-               id="position"
-               required
-               [(ngModel)]="employee.positionId"
-               name="description" />
+        <select [(ngModel)]="employee.positionId">
+          <option value="">Select Position</option>
+            <option *ngFor ="let position of empPositions" [value]="position.id">{{position.positionName}} </option>
+          </select>
       </div>
 
       <button (click)="saveEmployee()" class="btn btn-success">Submit</button>

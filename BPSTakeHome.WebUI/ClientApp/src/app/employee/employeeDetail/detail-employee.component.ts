@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EmployeeDetailsComponent implements OnInit {
   currentEmployee = null;
   message = '';
+  public empPositions: any;
 
   constructor(
     private employeeService: EmployeeService,
@@ -18,6 +19,21 @@ export class EmployeeDetailsComponent implements OnInit {
   ngOnInit() {
     this.message = '';
     this.getEmployee(this.route.snapshot.paramMap.get('id'));
+    this.retrieveEmpPositions();
+  }
+
+  retrieveEmpPositions() {
+
+    this.employeeService.getPositions()
+      .subscribe(
+        data => {
+          this.empPositions = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+
   }
 
   getEmployee(id) {

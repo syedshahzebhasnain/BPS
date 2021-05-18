@@ -11,11 +11,27 @@ export class EmployeeListComponent implements OnInit {
   currentEmployee = null;
   currentIndex = -1;
   title = '';
+  empPositions: any;
 
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
     this.retrieveEmployee();
+    this.retrieveEmpPositions();
+  }
+
+  retrieveEmpPositions() {
+
+    this.employeeService.getPositions()
+      .subscribe(
+        data => {
+          this.empPositions = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+
   }
 
   retrieveEmployee() {
@@ -39,5 +55,24 @@ export class EmployeeListComponent implements OnInit {
   setActiveEmployee(employee, index) {
     this.currentEmployee = employee;
     this.currentIndex = index;
+  }
+
+  getEmployeePosition(employeeIndex) {
+
+    if (employeeIndex === 0)
+      return;
+    var result =  this.empPositions.find( e => e.id == employeeIndex );
+    return result.positionName;
+  }
+
+  delete(employee, i) {
+    this.employeeService.delete(employee.id)
+    .subscribe(
+      data => {
+        this.employees = this.employees.filter(emp => emp.id != employee.id);
+      },
+      error => {
+        console.log(error);
+      });
   }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BPSTakeHome.Application.ViewModel
+﻿namespace BPSTakeHome.Application.ViewModel
 {
     public class EmployeePositionViewModel
     {
