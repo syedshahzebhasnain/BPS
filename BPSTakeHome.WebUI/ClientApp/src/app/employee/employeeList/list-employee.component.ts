@@ -14,6 +14,15 @@ export class EmployeeListComponent implements OnInit {
   title = '';
   empPositions: any;
 
+  employee = {
+    id: '',
+    fullName: '',
+    address: '',
+    phoneNumber: '',
+    positionId: 0,
+    published: false
+  };
+
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
@@ -75,5 +84,49 @@ export class EmployeeListComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+
+  addEmployee() {
+    this.currentEmployee =null;
+  }
+
+  saveEmployee(): void {
+    const data = {
+      id: "",
+      fullName: this.employee.fullName,
+      address: this.employee.address,
+      phoneNumber: this.employee.phoneNumber,
+      positionId: Number(this.employee.positionId)
+    };
+
+    console.log(this.employee.positionId)
+
+    this.employeeService.create(data).subscribe(
+      response => {
+        console.log(response);
+        this.employee = {
+          id: '',
+          fullName: '',
+          address: '',
+          phoneNumber: '',
+          positionId: 0,
+          published: false
+        }
+        this.retrieveEmployee();
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
+  newEmployee(): void {
+    this.employee = {
+      id: '',
+      fullName: '',
+      address: '',
+      phoneNumber: '',
+      positionId: 0,
+      published: false
+    };
   }
 }

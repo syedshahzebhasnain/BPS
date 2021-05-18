@@ -40,7 +40,7 @@ namespace BPSTakeHome.WebUI.Controllers
         [HttpPost]
         public async Task<EmployeeViewModel> CreateEmployee([FromBody] EmployeeViewModel employee)
         {
-            EmployeeViewModel model = await _employeeService.CreateEmployee(employee);
+             EmployeeViewModel model = await _employeeService.CreateEmployee(employee);
             return model;
         }
 
