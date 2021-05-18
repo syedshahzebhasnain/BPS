@@ -12,6 +12,7 @@
 2. Ensure DB configuration is provided in BPSTakeHome.WebUI -> appsettings.Development.json in the DbConnectionString config.
 3. For VS 2019/ VSCode, please ensure the startup project is set to BPSTakeHome.WebUI
 4. Launch the project
+5. Browser should launch automatically ( http://localhost:30629)
 
 ## Technologies
 
