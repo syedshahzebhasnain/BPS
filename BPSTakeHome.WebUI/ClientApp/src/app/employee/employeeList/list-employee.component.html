@@ -15,8 +15,8 @@
   </div>
   <div class="col-md-4">
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let employeeActive of employees; let i = index" [class.active]="i == currentIndex"
-        (click)="setActiveEmployee(employeeActive, i)">
+      <li class="list-group-item" *ngFor="let employeeActive of employees; let i = index"
+        [class.active]="i == currentIndex" (click)="setActiveEmployee(employeeActive, i)">
 
         <div class="row">
           <div class="col-6">
@@ -76,38 +76,39 @@
 
     <div *ngIf="!currentEmployee && currentAction =='Add'">
 
-        <div class="form-group row">
-          <label for="inputEmail" class="col-sm-2 col-form-label"><strong>Full Name</strong></label>
-          <div class="col-sm-10 col-form-label">
-            <input type="text" class="form-control" id="fullName" required [(ngModel)]="employee.fullName" name="title" />
-          </div>
+      <div class="form-group row">
+        <label for="inputEmail" class="col-sm-2 col-form-label"><strong>Full Name</strong></label>
+        <div class="col-sm-10 col-form-label">
+          <input type="text" class="form-control" id="fullName" required [(ngModel)]="employee.fullName" name="title" />
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label for="inputPassword" class="col-sm-2 col-form-label"><strong>Address</strong></label>
-          <div class="col-sm-10 col-form-label">
-            <input class="form-control" id="address" required [(ngModel)]="employee.address" name="description" />
-          </div>
+      <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"><strong>Address</strong></label>
+        <div class="col-sm-10 col-form-label">
+          <input class="form-control" id="address" required [(ngModel)]="employee.address" name="description" />
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label for="inputPassword" class="col-sm-2 col-form-label"><strong>Phone Number</strong></label>
-          <div class="col-sm-10 col-form-label">
-            <input class="form-control" id="phoneNumber" required [(ngModel)]="employee.phoneNumber" name="description" />
-          </div>
+      <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"><strong>Phone Number</strong></label>
+        <div class="col-sm-10 col-form-label">
+          <input class="form-control" id="phoneNumber" required [(ngModel)]="employee.phoneNumber" name="description" />
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label for="inputPassword" class="col-sm-2 col-form-label"><strong>Position</strong></label>
-          <div class="col-sm-10 col-form-label">
-            <select [(ngModel)]="employee.positionId">
-              <option value="">Select Position</option>
-              <option *ngFor="let position of empPositions" [value]="position.id">{{position.positionName}} </option>
-            </select>
-          </div>
+      <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label"><strong>Position</strong></label>
+        <div class="col-sm-10 col-form-label">
+          <select [(ngModel)]="employee.positionId">
+            <option value="">Select Position</option>
+            <option *ngFor="let position of empPositions" [value]="position.id">{{position.positionName}} </option>
+          </select>
         </div>
+      </div>
 
       <button (click)="saveEmployee()" class="btn btn-success">Submit</button>
+      <button (click)="cancelAdd()" class="btn btn-failure">Cancel</button>
     </div>
 
     <div *ngIf="!currentEmployee && currentAction =='Update'">
@@ -143,8 +144,9 @@
         </div>
       </div>
 
-    <button (click)="updateEmployee()" class="btn btn-success">Update</button>
-  </div>
+      <button (click)="updateEmployee(employee)" class="btn btn-success">Update</button>
+      <button (click)="cancelUpdate(employee)" class="btn btn-failure">Cancel</button>
+    </div>
 
 
   </div>

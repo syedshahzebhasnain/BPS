@@ -80,15 +80,17 @@ export class EmployeeListComponent implements OnInit {
     this.employeeService.delete(employee.id)
       .subscribe(
         data => {
+          alert("Selected employee deleted");
           this.employees = this.employees.filter(emp => emp.id != employee.id);
         },
         error => {
+          alert("Failure in delete operation");
           console.log(error);
         });
   }
 
   addEmployee() {
-    this.currentEmployee =null;
+    this.currentEmployee = null;
     this.currentAction = 'Add';
     this.employee = {
       id: '',
@@ -122,9 +124,11 @@ export class EmployeeListComponent implements OnInit {
           positionId: 0,
           published: false
         }
+        alert("Add Successfull");
         this.retrieveEmployee();
       },
       error => {
+        alert("Add operation failed");
         console.log(error);
       });
   }
@@ -138,15 +142,37 @@ export class EmployeeListComponent implements OnInit {
 
   }
 
-  updateEmployee() {
-    this.employeeService.update(this.employee.id, this.employee)
+  updateEmployee(employee) {
+
+    var employeeUpdate = {
+      id: employee.id,
+      fullName: employee.fullName,
+      address: employee.address,
+      phoneNumber: employee.phoneNumber,
+      positionId: Number(employee.positionId)
+    };
+    this.employeeService.update(employeeUpdate.id, employeeUpdate)
       .subscribe(
         response => {
+          alert("Update Successfull");
+          this.currentAction = 'Add'
+          this.currentEmployee = employee;
           console.log(response);
-
         },
         error => {
+          alert("Update operation failed");
           console.log(error);
         });
+  }
+
+  cancelUpdate(employee) {
+    this.currentAction = 'Add'
+    this.currentEmployee = employee;
+  }
+
+  cancelAdd() {
+    this.currentAction = 'Add'
+    this.retrieveEmployee();
+
   }
 }
