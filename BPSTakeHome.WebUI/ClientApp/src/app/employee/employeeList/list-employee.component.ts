@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/services/Employee.service';
 
 @Component({
-  selector: 'app-employee-list',
+  selector: 'app-employee',
   templateUrl: './list-employee.component.html',
   styleUrls: ['./list-employee.component.css']
 })
@@ -20,8 +20,7 @@ export class EmployeeListComponent implements OnInit {
     fullName: '',
     address: '',
     phoneNumber: '',
-    positionId: 0,
-    published: false
+    positionId: 0
   };
 
   constructor(private employeeService: EmployeeService) { }
@@ -97,8 +96,7 @@ export class EmployeeListComponent implements OnInit {
       fullName: '',
       address: '',
       phoneNumber: '',
-      positionId: 0,
-      published: false
+      positionId: 0
     }
   }
 
@@ -121,8 +119,7 @@ export class EmployeeListComponent implements OnInit {
           fullName: '',
           address: '',
           phoneNumber: '',
-          positionId: 0,
-          published: false
+          positionId: 0
         }
         alert("Add Successfull");
         this.retrieveEmployee();
@@ -136,10 +133,14 @@ export class EmployeeListComponent implements OnInit {
   editEmployee(employee, index) {
 
     this.currentAction = 'Update';
-
-    this.employee = employee;
     this.currentEmployee = null;
-
+    this.employee = {
+      id: employee.id,
+      fullName: employee.fullName,
+      address: employee.address,
+      phoneNumber: employee.phoneNumber,
+      positionId: employee.positionId,
+    }
   }
 
   updateEmployee(employee) {
@@ -155,6 +156,7 @@ export class EmployeeListComponent implements OnInit {
       .subscribe(
         response => {
           alert("Update Successfull");
+          this.retrieveEmployee();
           this.currentAction = 'Add'
           this.currentEmployee = employee;
           console.log(response);

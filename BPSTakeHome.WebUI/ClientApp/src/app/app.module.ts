@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { EmployeeListComponent } from './employee/employeeList/list-employee.component'
-import {EmployeeDetailsComponent } from './employee/employeeDetail/detail-employee.component'
 
 @NgModule({
   declarations: [
@@ -16,7 +15,6 @@ import {EmployeeDetailsComponent } from './employee/employeeDetail/detail-employ
     NavMenuComponent,
     HomeComponent,
     EmployeeListComponent,
-    EmployeeDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -24,8 +22,7 @@ import {EmployeeDetailsComponent } from './employee/employeeDetail/detail-employ
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: EmployeeListComponent, pathMatch: 'full' },
-      { path: 'employee-list', component: EmployeeListComponent },
-      { path: 'employee-list/:id', component: EmployeeDetailsComponent },
+      { path: 'employee', component: EmployeeListComponent },
     ])
   ],
   providers: [],

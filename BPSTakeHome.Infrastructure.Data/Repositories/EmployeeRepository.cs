@@ -60,6 +60,7 @@ namespace BPSTakeHome.Infrastructure.Data.Repositories
 
         public async Task<IEnumerable<EmployeePosition>> GetAllPositions()
         {
+            await Task.Delay(0);
             return _context.EmployeePosition.AsNoTracking();
 
         }
