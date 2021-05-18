@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import {AddEmployeeComponent } from './employee/addEmployee/add-employee.component'
 import { EmployeeListComponent } from './employee/employeeList/list-employee.component'
 import {EmployeeDetailsComponent } from './employee/employeeDetail/detail-employee.component'
 
@@ -16,7 +15,6 @@ import {EmployeeDetailsComponent } from './employee/employeeDetail/detail-employ
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    AddEmployeeComponent,
     EmployeeListComponent,
     EmployeeDetailsComponent
   ],
@@ -28,7 +26,6 @@ import {EmployeeDetailsComponent } from './employee/employeeDetail/detail-employ
       { path: '', component: EmployeeListComponent, pathMatch: 'full' },
       { path: 'employee-list', component: EmployeeListComponent },
       { path: 'employee-list/:id', component: EmployeeDetailsComponent },
-      { path: 'employee-add', component: AddEmployeeComponent}
     ])
   ],
   providers: [],
